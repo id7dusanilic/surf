@@ -1,26 +1,13 @@
-From bec34b54018e171a8c255b2cef4cdf85fc27ab56 Mon Sep 17 00:00:00 2001
-From: Dusan Ilic <idtronicsrs@gmail.com>
-Date: Mon, 19 Apr 2021 00:30:28 +0200
-Subject: [PATCH] Added homepage patch
-
----
- config.def.h | 2 ++
- surf.c       | 4 ++++
- 2 files changed, 6 insertions(+)
-
 diff --git a/config.def.h b/config.def.h
-index 003dea0..32fb0fc 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -181,3 +181,5 @@ static Button buttons[] = {
+@@ -164,3 +164,5 @@ static Button buttons[] = {
  	{ OnAny,        0,              9,      clicknavigate,  { .i = +1 },    1 },
  	{ OnMedia,      MODKEY,         1,      clickexternplayer, { 0 },       1 },
  };
 +
 +#define HOMEPAGE "https://duckduckgo.com/"
-\ No newline at end of file
 diff --git a/surf.c b/surf.c
-index 93a1629..b520287 100644
 --- a/surf.c
 +++ b/surf.c
 @@ -1751,7 +1751,11 @@ main(int argc, char *argv[])
@@ -35,6 +22,3 @@ index 93a1629..b520287 100644
  
  	setup();
  	c = newclient(NULL);
--- 
-2.31.1
-
