@@ -60,6 +60,16 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
         } \
 }
 
+/* SETFINDPROP(readprop, setprop, prompt)*/
+#define SETFINDPROP(r, s, p) { \
+        .v = (const char *[]){ "/bin/sh", "-c", \
+             "prop=\"$(printf '%b' \"$( : " \
+             "| dmenu -p \"$4\" -w $1)\")\" && " \
+             "xprop -id $1 -f $3 8s -set $3 \"$prop\"", \
+             "surf-setprop", winid, r, s, p, NULL \
+        } \
+}
+
 #define SEARCH() { \
         .v = (const char *[]){ "/bin/sh", "-c", \
              "xprop -id $1 -f $2 8s -set $2 \"" \
@@ -126,8 +136,8 @@ static SiteStyle styles[] = {
 static Key keys[] = {
 	/* modifier              keyval          function    arg */
 	{ MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO", PROMPT_GO) },
-	{ MODKEY,                GDK_KEY_f,      spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
-	{ MODKEY,                GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
+	{ MODKEY,                GDK_KEY_f,      spawn,      SETFINDPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
+	{ MODKEY,                GDK_KEY_slash,  spawn,      SETFINDPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
 	{ MODKEY,                GDK_KEY_m,      spawn,      BM_ADD("_SURF_URI") },
 	{ MODKEY,                GDK_KEY_s,      spawn,      SEARCH() },
 	
