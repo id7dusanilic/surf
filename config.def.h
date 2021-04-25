@@ -141,6 +141,8 @@ static Key keys[] = {
 	{ MODKEY,                GDK_KEY_m,      spawn,      BM_ADD("_SURF_URI") },
 	{ MODKEY,                GDK_KEY_s,      spawn,      SEARCH() },
 	
+	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_m,  playexternal, { 0 } },
+
 	{ 0,                     GDK_KEY_Escape, stop,       { 0 } },
 	{ MODKEY,                GDK_KEY_c,      stop,       { 0 } },
 
